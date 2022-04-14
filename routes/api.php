@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',HomeController::class);
 
 Route::apiResource('todo-list',TodoListController::class);
-Route::apiResource('task',TaskController::class);
+Route::apiResource('todo-list.task',TaskController::class)
+->except('show')
+->shallow();
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

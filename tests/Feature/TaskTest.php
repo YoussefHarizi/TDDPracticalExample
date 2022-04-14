@@ -11,15 +11,18 @@ class TaskTest extends TestCase
 {
     use RefreshDatabase;
     private $task;
+    private $list;
     public function setUp():void
     {
         parent::setUp();
-        $this->task=$this->createTask();
+        $this->list=$this->createTodoList();
+        $this->task=$this->createTask(['todo_list_id'=>$this->list->id]);
     }
     /** @test */
     public function fetch_all_tasks()
     {
-        $response=$this->getJson(route('task.index'))
+        $task2=$this->createTask();
+        $response=$this->getJson(route('todo-list.task.index',$this->list->id))
         ->assertOk()
         ->json();
 
@@ -32,11 +35,11 @@ class TaskTest extends TestCase
     public function store_task()
     {
         $task=Task::factory()->make();
-        $response=$this->postJson(route('task.store'),['title'=>$task->title])
+        $response=$this->postJson(route('todo-list.task.store',$this->list->id),['title'=>$task->title])
         ->assertCreated()
         ->json();
         // dd($response);
-        $this->assertDatabaseHas('tasks',['title'=>$task->title]);
+        $this->assertDatabaseHas('tasks',['title'=>$task->title,'todo_list_id'=>$this->list->id]);
     }
 
      /** @test */
