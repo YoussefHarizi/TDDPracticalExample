@@ -59,6 +59,14 @@ class TaskTest extends TestCase
         $this->assertDataBaseMissing('todo_lists',['id'=>$this->task->id,'title'=>$this->task->title]);
 
     }
+
+    /** @test */
+    public function task_can_change_status()
+    {
+        $response=$this->patchJson(route('task.update',$this->task->id),['status'=>Task::STARTED]);
+        $this->assertDatabaseHas('tasks',['id'=>$this->task->id,'status'=>Task::STARTED]);
+    }
+    
     
     
 }
