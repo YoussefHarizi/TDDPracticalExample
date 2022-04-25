@@ -15,12 +15,14 @@ class TodoListTest extends TestCase
     public function setUp():void    
     {
         parent::setUp();
-        $this->list=$this->createTodoList();
+        $user=$this->authUser();
+        $this->list=$this->createTodoList(['user_id'=>$user->id]);
     }
 
     /** @test */
     public function fetch_all_todo_list()
     {
+        $this->createTodoList();
         
         $response=$this->get(route('todo-list.index'))
         ->json();
@@ -45,7 +47,10 @@ class TodoListTest extends TestCase
     public function store_new_todo_list()
     {
         $list=TodoList::factory()->make();
-        $response=$this->postJson(route('todo-list.store'),['name'=>$list->name])
+        $response=$this->postJson(route('todo-list.store'),[
+            'name'=>$list->name,
+            'user_id'=>$list->user_id,
+            ])
         ->assertCreated()
         ->json();
 

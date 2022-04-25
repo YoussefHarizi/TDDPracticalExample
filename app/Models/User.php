@@ -46,4 +46,9 @@ class User extends Authenticatable
     {   
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function todo_lists()
+    {
+        return $this->hasMany(TodoList::class);
+    }
 }

@@ -15,6 +15,7 @@ class TaskTest extends TestCase
     public function setUp():void
     {
         parent::setUp();
+        $this->authUser();
         $this->list=$this->createTodoList();
         $this->task=$this->createTask(['todo_list_id'=>$this->list->id]);
     }
