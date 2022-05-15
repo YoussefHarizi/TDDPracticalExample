@@ -5,6 +5,7 @@
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HomeController;
 use App\Http\Controllers\Api\V1\LabelController;
+use App\Http\Controllers\Api\V1\ServiceController;
 use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\Api\V1\TodoListController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function(){
     ->shallow();
 
     Route::apiResource('label',LabelController::class);
+
+    Route::get('google/connect/{service}',[ServiceController::class,'connect'])->name('service.connect');
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
