@@ -33,7 +33,7 @@ Route::get('/google-drive/callback', function () {
 
 Route::get('upload', function () {
     $client = new Client();
-    $access_token = 'ya29.A0ARrdaM9DH6S5fCynMGs--nxdgyh5hkHfQJ0bdfkRVt4mwxXbbjNjuCcsWxDyA0bfH5Cwsg0GTFxZH-KwzDp65xHmyD49QNYQDHYb5KYeaZSua_Eg5xhAjVHQzSwkENYwiGCtuGZVihQYktGHh8gvVOKzDMJZ';
+    $access_token = 'ya29.A0ARrdaM_-QKT_cYB6Jp0YgpuYo4pVAeCNUrG2gVrCib10rN02q08VVsqKkYZ_-KFfcHQQX5IyM3VMLHGWaYWf3G6Mf4ZJHGn6CTtJ3O0v2xts8nIWxTIEbsBhz7OGkevy5UWH_Zz3MsQYLutZgaMzP56U2tGdYUNnWUtBVEFTQVRBU0ZRR0I4RXhnRXNhR1lINTRuYTM3UnlXUGkyT1Vjdw0163';
 
     $client->setAccessToken($access_token);
     $service = new Google\Service\Drive($client);
